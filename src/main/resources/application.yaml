@@ -1,0 +1,31 @@
+#Database Configuration
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update  #validate, update, create-drop, create
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    properties:
+      hibernate.format_sql: true
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost/sporty_shoes?createDatabaseIfNotExist=true
+    username: postgres
+    password: root
+    initialization-mode: always
+    continue-on-error: true
+    driver-class-name: org.postgresql.Driver
+
+
+#  thymeleaf Configuration
+thymeleaf:
+prefix: classpath:/templates/
+suffix: .html
+
+#   Server port
+server:
+  port: 5555
+  error:
+    whitelabel:
+      enabled: false

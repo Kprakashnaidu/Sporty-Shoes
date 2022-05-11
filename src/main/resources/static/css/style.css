@@ -1,0 +1,140 @@
+.toast {
+  top: 65px;
+  right: 45px;
+  z-index: 100;
+  background-color: #ffffff;
+  border: 3px solid !important;
+}
+
+.toast-header {
+  color: green;
+  background-color: #ffffff;
+  border-color: green;
+}
+
+.toast-header small,
+.toast-header button {
+  color: black !important;
+}
+.carousel-caption {
+  top: 34rem;
+}
+a.d-block > img {
+  height: 50vh;
+}
+#carouselExampleCaptions {
+  max-height: 640px;
+}
+.carousel-item > img {
+  height: 640px;
+}
+.navbar-nav .dropdown-menu {
+  position: absolute;
+  float: none;
+}
+nav .nav-item {
+  list-style: none;
+}
+.dropdown {
+  position: relative;
+  top: 0px;
+}
+.dropdown-menu .dropdown-item:hover {
+  color: blue;
+  background-color: black;
+}
+.btn-secondary {
+  color: #f8f9fa;
+  background-color: #343a40;
+}
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active {
+  color: #f8f9fa;
+  background-color: #343a40;
+}
+
+#form-section .form-floating {
+  position: relative;
+}
+#form-section .form-select {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+#form-section .form-floating > .form-select {
+  padding-top: 1.625rem;
+  padding-bottom: 0.625rem;
+}
+#form-section .form-floating > .form-control,
+.form-floating > .form-select {
+  height: calc(3.5rem + 2px);
+  padding: 1rem 0.75rem;
+}
+#form-section button.btn {
+  background-color: #6f42c1 !important;
+}
+
+#form-section .dashes {
+  border: 4px dashed #6f42c1 !important;
+}
+
+#form-section .editable {
+  color: #6f42c1 !important;
+}
+
+#form-section .form-control:focus,
+#form-section .form-select:focus {
+  border-color: #6f42c1 !important;
+  box-shadow: 0 0 0 0.2rem rgb(111 66 193) !important;
+}
+#form-section .form-control,
+#form-section .form-select {
+  border: none;
+  border-bottom: 2px solid #ced4da;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+#form-section .form-control:focus,
+#form-section .form-control:active,
+#form-section .form-select:focus,
+#form-section .form-select:active {
+  transition: 0.5s ease-in-out !important;
+  left: 0 !important;
+  border-color: #6f42c1 !important;
+  outline: none !important;
+  outline-offset: 0px !important;
+  box-shadow: none !important;
+}
+.active {
+  color:  #ffffff !important;
+}
+
+.s-active {
+    color: #007bff !important;
+}
+
+.is-invalid {
+  font-size: 80% !important;
+  color: #dc3545 !important;
+}
+aside#sidebarMenu {
+  position: initial !important;
+}
+footer {
+  background-color: #343a40 !important;
+}

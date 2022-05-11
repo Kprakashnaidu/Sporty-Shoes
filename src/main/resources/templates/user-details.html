@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>User Details | Sports Shoes</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}"/>
+
+    <!-- Datatable core CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/datatables/1.10.23/css/jquery.dataTables.css}"/>
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/assets/bootstrap/css/dashboard.css}" rel="stylesheet"/>
+
+    <!--Custom Style-->
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<!--Nav-Bar Starts-->
+<th:block th:replace="fragments/header :: nav"></th:block>
+<!--Nav-Bar Ends-->
+
+<div class="container-fluid">
+    <div class="row">
+        <!--Side Nav Starts-->
+        <th:block th:replace="fragments/side-nav :: aside"></th:block>
+        <!--Side Nav Ends-->
+
+        <!--        Main Content starts-->
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 mb-auto">
+            <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+            >
+                <h1 class="h2">User Details</h1>
+            </div>
+            <div id="data-table" class="w-100 py-3">
+                <table id="example" class="display w-100">
+                    <thead>
+
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>User ID</th>
+                        <td th:text="${user.id}"></td>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td th:text="${user.name}"></td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td th:text="${user.email}"></td>
+                    </tr>
+                    <tr>
+                        <th>Gender</th>
+                        <td th:text="${user.gender}"></td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td th:text="${user.address}"></td>
+                    </tr>
+                    <tr>
+                        <th>City</th>
+                        <td th:text="${user.city}"></td>
+                    </tr>
+                    <tr>
+                        <th>State</th>
+                        <td th:text="${user.state}"></td>
+                    </tr>
+                    <tr>
+                        <th>Zipcode</th>
+                        <td th:text="${user.zipcode}"></td>
+                    </tr>
+                    <tr>
+                        <th>User Role</th>
+                        <td th:text="${user.userRole}"></td>
+                    </tr>
+                    <tr>
+                        <th>Is Account Non Expired</th>
+                        <td th:text="${user.isAccountNonExpired}"></td>
+                    </tr>
+                    <tr>
+                        <th>Is Account Non Locked</th>
+                        <td th:text="${user.isAccountNonLocked}"></td>
+                    </tr>
+                    <tr>
+                        <th>Is Credentials Non Expired</th>
+                        <td th:text="${user.isCredentialsNonExpired}"></td>
+                    </tr>
+                    <tr>
+                        <th>Is Enabled</th>
+                        <td th:text="${user.isEnabled}"></td>
+                    </tr>
+                    <tr>
+                        <th>All Orders</th>
+                        <td>
+                            <ul class="list-group">
+                                <li class="list-group-item border-0 py-2 px-0" th:each="order : ${user.orderEntities}">
+                                    <a th:href="@{/order/view/{id}(id=${order.id})}"
+                                       th:text="${'Order ' + order.id}"></a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                </table>
+            </div>
+        </main>
+        <!--        Main Content ends-->
+
+    </div>
+</div>
+
+<!--Footer Starts-->
+<th:block th:replace="fragments/footer :: footer"></th:block>
+<!--Footer Ends-->
+
+<!--jQuery JS dependency-->
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+
+<!--Bootstrap JS dependency-->
+<script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+
+<!--Datatables JS dependency-->
+<script th:src="@{/webjars/datatables/1.10.23/js/jquery.dataTables.js}"></script>
+
+<!--Custom JS-->
+<script th:src="@{/js/script.js}"></script>
+
+<script>
+      $(document).ready(function () {
+        $("#example").DataTable();
+      });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Update User Details | Sports Shoes</title>
+
+    <!-- Bootstrap core CSS -->
+    <link
+            th:rel="stylesheet"
+            th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css} "
+    />
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/assets/bootstrap/css/dashboard.css}" rel="stylesheet"/>
+
+    <!--Custom Style-->
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<!--Nav-Bar Starts-->
+<th:block th:replace="fragments/header :: nav"></th:block>
+<!--Nav-Bar Ends-->
+
+<div class="container-fluid">
+    <div class="row">
+        <!--Side Nav Starts-->
+        <th:block th:replace="fragments/side-nav :: aside"></th:block>
+        <!--Side Nav Ends-->
+
+        <!--        Main Content starts-->
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 mb-auto">
+            <!--            Content heading starts-->
+            <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+            >
+                <h1 class="h2">Update User Details</h1>
+            </div>
+            <!--            Content heading ends-->
+
+            <!-- Content Starts -->
+            <div id="data-table" class="w-100 container px-5 my-4">
+                <form
+                        th:action="@{/user/update/{id}(id=${user.id})}"
+                        method="POST"
+                        th:object="${user}"
+                        id="form-section"
+                        class="needs-validation"
+                        novalidate
+                        enctype="multipart/form-data"
+                >
+                    <table id="example" class="display w-100">
+                        <thead>
+
+                        </thead>
+                        <tbody>
+                        <!--                    Name field-->
+                        <tr>
+                            <th>Name</th>
+                            <td>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="name"
+                                        th:field="*{name}"
+                                        name="name"
+                                        required
+                                />
+                                <div
+                                        th:if="${#fields.hasErrors('name')}"
+                                        th:errors="*{name}"
+                                        class="is-invalid"
+                                >
+                                    Please create a strong password.
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!--                    Email ID field-->
+                        <tr>
+                            <th>Email ID</th>
+                            <td>
+                                <input
+                                        type="email"
+                                        class="form-control"
+                                        id="email-id"
+                                        th:field="*{email}"
+                                        placeholder="prakashnaidupn@gmail.com"
+                                        required
+                                        autofocus
+                                        minlength="6"
+                                />
+                                <div
+                                        th:if="${#fields.hasErrors('email')}"
+                                        th:errors="*{email}"
+                                        class="is-invalid"
+                                >
+                                    Please provide valid Email ID.
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!--                    Gender field-->
+                        <tr>
+                            <th>Gender</th>
+                            <td>
+                                <select
+                                        class="custom-select"
+                                        id="gender"
+                                        th:field="*{gender}"
+                                        autofocus
+                                        required
+                                >
+                                    <option selected value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                                <div
+                                        th:if="${#fields.hasErrors('gender')}"
+                                        th:errors="*{gender}"
+                                        class="is-invalid"
+                                >
+                                    Please select your Gender.
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!--                    Password field-->
+                        <tr>
+                            <th>Password</th>
+                            <td>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="password"
+                                        th:field="*{password}"
+                                        placeholder="Your Password"
+                                        required
+                                        autofocus
+                                        minlength="4"
+                                />
+                                <div
+                                        th:if="${#fields.hasErrors('password')}"
+                                        th:errors="*{password}"
+                                        class="is-invalid"
+                                >
+                                    Please create a strong password.
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!--                    Address field-->
+                        <tr>
+                            <th>Address</th>
+                            <td>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="address"
+                                        th:field="*{address}"
+                                        placeholder="#door-no, street, landmark"
+                                        required
+                                        autofocus
+                                        minlength="4"
+                                />
+                                <div
+                                        th:if="${#fields.hasErrors('address')}"
+                                        th:errors="*{address}"
+                                        class="is-invalid"
+                                >
+                                    Please enter valid address.
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!--                    City field-->
+                        <tr>
+                            <th>City</th>
+                            <td>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="city"
+                                        th:field="*{city}"
+                                        autofocus
+                                        placeholder="Bengaluru"
+                                        minlength="4"
+                                        required
+                                />
+                                <div
+                                        th:if="${#fields.hasErrors('city')}"
+                                        th:errors="*{city}"
+                                        class="is-invalid"
+                                >
+                                    Please provide a valid city.
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!--                    State field-->
+                        <tr>
+                            <th>State</th>
+                            <td>
+                                <input
+                                        class="custom-select"
+                                        id="state"
+                                        th:field="*{state}"
+                                        autofocus
+                                        required
+                                        list="states"
+                                />
+                                <datalist id="states">
+                                    <option
+                                            th:each="state : ${states}"
+                                            th:value="${state}"
+                                            th:text="${state}"
+                                            th:selected="${state == user.state}"
+                                    ></option>
+                                </datalist>
+                                <div
+                                        th:if="${#fields.hasErrors('state')}"
+                                        th:errors="*{state}"
+                                        class="is-invalid"
+                                >
+                                    Please select a valid state.
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!--                    Zipcode field-->
+                        <tr>
+                            <th>Zipcode</th>
+                            <td>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="zip-code"
+                                        th:field="*{zipcode}"
+                                        placeholder="560006"
+                                        autofocus
+                                        required
+                                />
+                                <div
+                                        th:if="${#fields.hasErrors('zipcode')}"
+                                        th:errors="*{zipcode}"
+                                        class="is-invalid"
+                                >
+                                    Please provide a valid zip.
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!--                    User Roles field-->
+                        <tr>
+                            <th>User Roles</th>
+                            <td>
+                                <select
+                                        class="form-select"
+                                        id="user-role"
+                                        th:field="*{userRole}"
+                                        required
+                                        autofocus
+                                >
+                                    <option th:each="role : ${roles}" th:value="${role}"
+                                            th:text="${role}"
+                                            th:selected="${role == user.userRole}"></option>
+                                </select>
+                                <div
+                                        th:if="${#fields.hasErrors('userRole')}"
+                                        th:errors="*{userRole}"
+                                        class="is-invalid"
+                                >
+                                    Please select a valid state.
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!--                    Account Not Expired field-->
+                        <tr>
+                            <th>Account Not Expired</th>
+                            <td>
+                                <select
+                                        class="form-select"
+                                        id="isAccountNonExpired"
+                                        th:field="*{isAccountNonExpired}"
+                                        required
+                                        autofocus
+                                >
+                                    <option th:each="statement : ${statements}" th:value="${statement}"
+                                            th:text="${statement}"
+                                            th:selected="${statement == user.isAccountNonExpired}"></option>
+                                </select>
+                                <div
+                                        th:if="${#fields.hasErrors('isAccountNonExpired')}"
+                                        th:errors="*{isAccountNonExpired}"
+                                        class="is-invalid"
+                                >
+                                    Please provide a valid zip.
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!--                    Account Non Locked field-->
+                        <tr>
+                            <th>Account Non Locked</th>
+                            <td>
+                                <select
+                                        class="form-select"
+                                        id="isAccountNonLocked"
+                                        th:field="*{isAccountNonLocked}"
+                                        required
+                                        autofocus
+                                >
+                                    <option th:each="statement : ${statements}" th:value="${statement}"
+                                            th:text="${statement}"
+                                            th:selected="${statement == user.isAccountNonLocked}"></option>
+                                </select>
+                                <div
+                                        th:if="${#fields.hasErrors('isAccountNonLocked')}"
+                                        th:errors="*{isAccountNonLocked}"
+                                        class="is-invalid"
+                                >
+                                    Please provide a valid zip.
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!--                    Credentials Non Expired field-->
+                        <tr>
+                            <th>Credentials Non Expired</th>
+                            <td>
+                                <select
+                                        class="form-select"
+                                        id="isCredentialsNonExpired"
+                                        th:field="*{isCredentialsNonExpired}"
+                                        required
+                                        autofocus
+                                >
+                                    <option th:each="statement : ${statements}" th:value="${statement}"
+                                            th:text="${statement}"
+                                            th:selected="${statement == user.isCredentialsNonExpired}"></option>
+                                </select>
+                                <div
+                                        th:if="${#fields.hasErrors('isCredentialsNonExpired')}"
+                                        th:errors="*{isCredentialsNonExpired}"
+                                        class="is-invalid"
+                                >
+                                    Please provide a valid zip.
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!--                    Is Enabled field-->
+                        <tr>
+                            <th>Is Enabled</th>
+                            <td>
+                                <select
+                                        class="form-select"
+                                        id="isEnabled"
+                                        th:field="*{isEnabled}"
+                                        required
+                                        autofocus
+                                >
+                                    <option th:each="statement : ${statements}" th:value="${statement}"
+                                            th:text="${statement}"
+                                            th:selected="${statement == user.isEnabled}"></option>
+                                </select>
+                                <div
+                                        th:if="${#fields.hasErrors('isEnabled')}"
+                                        th:errors="*{isEnabled}"
+                                        class="is-invalid"
+                                >
+                                    Please provide a valid zip.
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!--                    Terms & Conditions field-->
+                        <tr>
+                            <th>Terms & Conditions</th>
+                            <td>
+                                <select
+                                        class="form-select"
+                                        id="terms"
+                                        th:field="*{terms}"
+                                        required
+                                        autofocus
+                                >
+                                    <option th:each="statement : ${statements}" th:value="${statement}"
+                                            th:text="${statement}"
+                                            th:selected="${statement == user.terms}"></option>
+                                </select>
+                                <div
+                                        th:if="${#fields.hasErrors('terms')}"
+                                        th:errors="*{terms}"
+                                        class="is-invalid"
+                                >
+                                    Please provide a valid zip.
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>Update</th>
+                            <th>
+                                <button type="submit" class="btn btn-info btn-sm btn-block">Update</button>
+                            </th>
+                        </tr>
+                        </tfoot>
+
+                    </table>
+                </form>
+            </div>
+            <!-- Content Ends -->
+        </main>
+        <!--        Main Content ends-->
+
+    </div>
+</div>
+
+<!--Footer Starts-->
+<th:block th:replace="fragments/footer :: footer"></th:block>
+<!--Footer Ends-->
+
+<!--jQuery JS dependency-->
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+
+<!--Bootstrap JS dependency-->
+<script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+
+<!--Datatables JS dependency-->
+<script th:src="@{/webjars/datatables/1.10.23/js/jquery.dataTables.js}"></script>
+
+<!--Custom JS-->
+<script th:src="@{/js/script.js}"></script>
+
+<script>
+      $(document).ready(function () {
+        $("#example").DataTable();
+      });
+</script>
+</body>
+</html>

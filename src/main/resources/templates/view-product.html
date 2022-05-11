@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>View Stock | Sports Shoes</title>
+
+    <!-- Bootstrap core CSS -->
+    <link
+            th:rel="stylesheet"
+            th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css} "
+    />
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/assets/bootstrap/css/dashboard.css}" rel="stylesheet"/>
+
+    <!-- Datatable core CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/datatables/1.10.23/css/jquery.dataTables.css}"/>
+
+    <!--    File Upload style-->
+    <link rel="stylesheet" th:href="@{/css/file-upload.css}"/>
+
+    <!--Custom Style-->
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<!--Nav-Bar Starts-->
+<th:block th:replace="fragments/header :: nav"></th:block>
+<!--Nav-Bar Ends-->
+
+<div class="container-fluid">
+    <div class="row">
+        <!--Side Nav Starts-->
+        <th:block th:replace="fragments/side-nav :: aside"></th:block>
+        <!--Side Nav Ends-->
+
+        <!--        Main Content starts-->
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 mb-auto">
+            <!--            Content heading starts-->
+            <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+            >
+                <h1 class="h2">View Stock</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group mr-2">
+                        <a class="btn btn-sm btn-outline-danger"
+                           th:href="@{/product/delete/{id}(id=${id})}">
+                            Delete Record
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--            Content heading ends-->
+
+            <!-- Content Starts -->
+            <div id="data-table" class="w-100 container px-5 my-4">
+                <form
+                        th:action="@{/product/update/{id}(id=${id})}"
+                        method="POST"
+                        id="form-section"
+                        class="needs-validation"
+                        novalidate
+                        enctype="multipart/form-data"
+                >
+                    <table id="example" class="display w-100">
+                        <thead>
+
+                        </thead>
+                        <tbody>
+                        <!--                    Name field-->
+                        <tr>
+                            <th>Name</th>
+                            <td>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="name"
+                                        name="name"
+                                        th:value="${product.name}"
+                                />
+                                <!--                                <div-->
+                                <!--                                        th:if="${#fields.hasErrors('name')}"-->
+                                <!--                                        th:errors="*{name}"-->
+                                <!--                                        class="is-invalid"-->
+                                <!--                                >-->
+                                <!--                                    Please create a strong password.-->
+                                <!--                                </div>-->
+                            </td>
+                        </tr>
+                        <!--                    Style Name field-->
+
+                        <tr>
+                            <th>Style Name</th>
+                            <td>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="styleName"
+                                        name="styleName"
+                                        th:value="${product.styleName}"
+                                        list="style-names"
+                                />
+                                <datalist id="style-names">
+                                    <option th:each="style : ${styles}" th:value="${style}" th:text="${style}"
+                                            th:selected="${style == product.styleName}"></option>
+                                </datalist>
+                                <!--                                <div-->
+                                <!--                                        th:if="${#fields.hasErrors('styleName')}"-->
+                                <!--                                        th:errors="*{styleName}"-->
+                                <!--                                        class="is-invalid"-->
+                                <!--                                >-->
+                                <!--                                    Please create a strong password.-->
+                                <!--                                </div>-->
+                            </td>
+                        </tr>
+
+                        <!--                    Brand field-->
+                        <tr>
+                            <th>Brand</th>
+                            <td>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="brand"
+                                        name="brand"
+                                        th:value="${product.brand}"
+                                        list="brands"
+                                />
+                                <datalist id="brands">
+                                    <option th:each="brand : ${brands}" th:value="${brand}" th:text="${brand}"
+                                            th:selected="${brand == product.brand}"></option>
+                                </datalist>
+                                <!--                                <div-->
+                                <!--                                        th:if="${#fields.hasErrors('brand')}"-->
+                                <!--                                        th:errors="*{brand}"-->
+                                <!--                                        class="is-invalid"-->
+                                <!--                                >-->
+                                <!--                                    Please create a strong password.-->
+                                <!--                                </div>-->
+                            </td>
+                        </tr>
+
+                        <!--                    Color field-->
+                        <tr>
+                            <th>Color</th>
+                            <td>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="color"
+                                        name="color"
+                                        th:value="${product.color}"
+                                        list="colors"
+                                />
+                                <datalist id="colors">
+                                    <option th:each="color : ${colors}" th:value="${color}" th:text="${color}"
+                                            th:selected="${color == product.color}"></option>
+                                </datalist>
+                                <!--                                <div-->
+                                <!--                                        th:if="${#fields.hasErrors('color')}"-->
+                                <!--                                        th:errors="*{color}"-->
+                                <!--                                        class="is-invalid"-->
+                                <!--                                >-->
+                                <!--                                    Please create a strong password.-->
+                                <!--                                </div>-->
+                            </td>
+                        </tr>
+
+                        <!--                    Stock field-->
+                        <tr>
+                            <th>Stock</th>
+                            <td>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="stock"
+                                        name="stock"
+                                        th:value="${product.stock}"
+                                />
+                                <!--                                <div-->
+                                <!--                                        th:if="${#fields.hasErrors('stock')}"-->
+                                <!--                                        th:errors="*{stock}"-->
+                                <!--                                        class="is-invalid"-->
+                                <!--                                >-->
+                                <!--                                    Please create a strong password.-->
+                                <!--                                </div>-->
+                            </td>
+                        </tr>
+
+                        <!--                    Sold field-->
+                        <tr>
+                            <th>Sold</th>
+                            <td>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="sold"
+                                        name="sold"
+                                        th:value="${product.sold}"
+                                        readonly
+                                />
+                                <!--                                <div-->
+                                <!--                                        th:if="${#fields.hasErrors('sold')}"-->
+                                <!--                                        th:errors="*{sold}"-->
+                                <!--                                        class="is-invalid"-->
+                                <!--                                >-->
+                                <!--                                    Please create a strong password.-->
+                                <!--                                </div>-->
+                            </td>
+                        </tr>
+
+                        <!--                    Suitable For field-->
+                        <tr>
+                            <th>Suitable For</th>
+                            <td>
+                                <select
+                                        class="form-select"
+                                        id="suitable-for"
+                                        name="suitableFor"
+                                        th:value="${product.description}"
+                                        required
+                                        autofocus
+                                >
+                                    <option th:each="for : ${suitableFor}" th:value="${for}" th:text="${for}"
+                                            th:selected="${for == product.suitableFor}"></option>
+                                </select>
+                                <!--                                <div-->
+                                <!--                                        th:if="${#fields.hasErrors('suitableFor')}"-->
+                                <!--                                        th:errors="*{suitableFor}"-->
+                                <!--                                        class="is-invalid"-->
+                                <!--                                >-->
+                                <!--                                    Please create a strong password.-->
+                                <!--                                </div>-->
+                            </td>
+                        </tr>
+
+                        <!--                    Type field-->
+                        <tr>
+                            <th>Type</th>
+                            <td>
+                                <select
+                                        class="form-select"
+                                        id="type"
+                                        name="type"
+                                        required
+                                        autofocus
+                                >
+                                    <option th:each="type : ${types}" th:value="${type}" th:text="${type}"
+                                            th:selected="${type == product.type}"></option>
+                                </select>
+                                <!--                                <div-->
+                                <!--                                        th:if="${#fields.hasErrors('type')}"-->
+                                <!--                                        th:errors="*{type}"-->
+                                <!--                                        class="is-invalid"-->
+                                <!--                                >-->
+                                <!--                                    Please create a strong password.-->
+                                <!--                                </div>-->
+                            </td>
+                        </tr>
+
+                        <!--                    Price field-->
+                        <tr>
+                            <th>Price</th>
+                            <td>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="price"
+                                        name="price"
+                                        th:value="${product.price}"
+                                />
+                                <!--                                <div-->
+                                <!--                                        th:if="${#fields.hasErrors('price')}"-->
+                                <!--                                        th:errors="*{price}"-->
+                                <!--                                        class="is-invalid"-->
+                                <!--                                >-->
+                                <!--                                    Please create a strong password.-->
+                                <!--                                </div>-->
+                            </td>
+                        </tr>
+
+                        <!--                    Description field-->
+                        <tr>
+                            <th>Description</th>
+                            <td>
+                                <textarea
+                                        class="form-control"
+                                        id="observation"
+                                        rows="3"
+                                        style="height: 100px"
+                                        name="description"
+                                        th:value="${product.description}"
+                                        required
+                                        autofocus
+                                        minlength="3"
+                                ></textarea>
+                                <!--                                <div-->
+                                <!--                                        th:if="${#fields.hasErrors('description')}"-->
+                                <!--                                        th:errors="*{description}"-->
+                                <!--                                        class="is-invalid"-->
+                                <!--                                >-->
+                                <!--                                    Please create a strong password.-->
+                                <!--                                </div>-->
+                            </td>
+                        </tr>
+
+                        <!--                    Image field-->
+                        <tr>
+                            <th>Image</th>
+                            <td>
+                                <input
+                                        type="file"
+                                        class="form-control"
+                                        id="image"
+                                        name="image"
+                                        th:value="${product.image}"
+                                        accept="image/png, image/jpeg"
+                                />
+                                <!--                                <div-->
+                                <!--                                        th:if="${#fields.hasErrors('image')}"-->
+                                <!--                                        th:errors="*{image}"-->
+                                <!--                                        class="is-invalid"-->
+                                <!--                                >-->
+                                <!--                                    Please create a strong password.-->
+                                <!--                                </div>-->
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>Update</th>
+                            <th>
+                                <button type="submit" class="btn btn-info btn-sm btn-block">Update</button>
+                            </th>
+                        </tr>
+                        </tfoot>
+
+                    </table>
+                </form>
+            </div>
+            <!-- Content Ends -->
+        </main>
+        <!--        Main Content ends-->
+
+    </div>
+</div>
+
+<!--Footer Starts-->
+<th:block th:replace="fragments/footer :: footer"></th:block>
+<!--Footer Ends-->
+
+<!--jQuery JS dependency-->
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+
+<!--Bootstrap JS dependency-->
+<script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+
+<!--Datatables JS dependency-->
+<script th:src="@{/webjars/datatables/1.10.23/js/jquery.dataTables.js}"></script>
+
+<!--File Upload JS dependency-->
+<script th:src="@{/js/file-upload.js}"></script>
+
+<!--Custom JS-->
+<script th:src="@{/js/script.js}"></script>
+
+<script>
+      $(document).ready(function () {
+        $("#example").DataTable();
+      });
+
+</script>
+</body>
+</html>

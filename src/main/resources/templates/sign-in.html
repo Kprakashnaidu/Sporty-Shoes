@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Sign-In | Sporty Shoes</title>
+
+    <!-- Bootstrap core CSS -->
+    <link
+            th:rel="stylesheet"
+            th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css} "
+    />
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/assets/bootstrap/css/cover.css}" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      body {
+        box-shadow: none;
+      }
+      footer {
+        background-color: transparent !important;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+
+    </style>
+</head>
+<body class="text-center">
+<!-- Wrapper Starts here -->
+<div class="col-8 d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <!--Nav-Bar Starts-->
+    <th:block th:replace="fragments/login-header :: header"></th:block>
+    <!--Nav-Bar Ends-->
+
+    <main role="main">
+        <div class="form my-5 col-8 mx-auto">
+            <div th:if="${param.error}">
+                <div class="alert alert-danger">
+                    [[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]
+                </div>
+            </div>
+            <h1 class="cover-heading">Login page</h1>
+            <form th:action="@{/login}" method="post" class="my-2">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input
+                            type="email"
+                            class="form-control"
+                            id="exampleInputEmail1"
+                            placeholder="prakashnaidupn7@gmail.com"
+                            minlength="5"
+                            autofocus
+                            autocomplete="autocomplete"
+                            required
+                            aria-describedby="emailHelp"
+                            name="username"
+                    />
+                    <small id="emailHelp" class="form-text text-muted"
+                    >We'll never share your email with anyone else.</small
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input
+                            type="password"
+                            class="form-control"
+                            id="exampleInputPassword1"
+                            placeholder="Enter Password"
+                            minlength="4"
+                            autofocus
+                            required
+                            name="password"
+                    />
+                </div>
+                <div class="form-group form-check">
+                    <input
+                            type="checkbox"
+                            class="form-check-input"
+                            id="exampleCheck1"
+                    />
+                    <label class="form-check-label" for="exampleCheck1"
+                    >Remember Me</label
+                    >
+                </div>
+                <button type="submit" class="btn btn-success btn-block lead">
+                    Let Me In
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <!--Footer Starts-->
+    <th:block th:replace="fragments/footer :: footer"></th:block>
+    <!--Footer Ends-->
+</div>
+<!-- Wrapper Ends here -->
+
+<!--jQuery JS dependency-->
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+
+<!--Custom JS-->
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

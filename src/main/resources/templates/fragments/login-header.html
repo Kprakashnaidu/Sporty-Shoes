@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+</head>
+<body>
+<!--Wrapper Starts here-->
+<div id="wrapper">
+    <!-- Header Starts here -->
+    <header th:fragment="header" class="masthead mb-auto">
+        <div class="inner">
+            <h3 class="masthead-brand">Sporty Shoes</h3>
+            <nav class="nav nav-masthead justify-content-center">
+                <a class="nav-link" th:href="@{/home}">Home</a>
+                <a class="nav-link" th:href="@{/login}" th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/login')} ? 'active' : 'null'">Sign In</a>
+                <a class="nav-link" th:href="@{/user/sign-up}" th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/user/sign-up')} ? 'active' : 'null'">Sign Up</a>
+            </nav>
+        </div>
+    </header>
+    <!-- Header Ends here -->
+</div>
+<!--Wrapper ends here-->
+</body>
+</html>

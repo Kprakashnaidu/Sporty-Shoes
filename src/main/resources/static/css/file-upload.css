@@ -1,0 +1,128 @@
+/* *, *:before, *:after {
+  box-sizing: border-box;
+}
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+body, html {
+  min-height: 100vh;
+  background: #666;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+} */
+
+/* .table {
+  display: table;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+}
+
+.table-cell {
+  display: table-cell;
+  vertical-align: middle;
+} */
+
+#form-section .file-modal {
+  margin: 0 auto;
+  background: #fff;
+  /* box-shadow: 0 40px 50px rgba(0, 0, 0, 0.35); */
+  padding: 40px;
+}
+
+#form-section #mediaFile {
+  position: absolute;
+  top: -1000px;
+}
+
+#form-section #profile {
+  border-radius: 100%;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  position: relative;
+  margin-bottom: 10px;
+  cursor: pointer;
+  background: #f4f4f4;
+  display: table;
+  background-size: cover;
+  background-position: center center;
+  /* box-shadow: 0 5px 8px rgba(0, 0, 0, 0.35); */
+}
+#form-section #profile .dashes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 100%;
+  width: 100%;
+  height: 100%;
+  border: 4px dashed #6f42c1;
+  opacity: 1;
+}
+#form-section #profile label {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  padding: 0 30px;
+  color: grey;
+  opacity: 1;
+}
+#form-section #profile.dragging {
+  background-image: none !important;
+}
+#form-section #profile.dragging .dashes {
+  -webkit-animation-duration: 10s;
+  animation-duration: 10s;
+  -webkit-animation-name: spin;
+  animation-name: spin;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  opacity: 1 !important;
+}
+#form-section #profile.dragging label {
+  opacity: 0.5 !important;
+}
+#form-section #profile.hasImage .dashes,
+#form-section #profile.hasImage label {
+  opacity: 0;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#form-section .file-modal h5 {
+  letter-spacing: 1px;
+}
+
+#form-section .file-modal.editable {
+  position: relative;
+}
+#form-section .file-modal .editable i {
+  position: absolute;
+  top: 10px;
+  right: -20px;
+  opacity: 0.3;
+}

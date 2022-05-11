@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <!--    <title layout:title-pattern="$LAYOUT_TITLE | $CONTENT_TITLE">Header</title>-->
+    <title>Header</title>
+
+    <!-- Bootstrap core CSS -->
+    <link
+            th:rel="stylesheet"
+            th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css} "
+    />
+</head>
+<body>
+<!--Wrapper Starts here-->
+<div id="wrapper">
+
+    <!--    Nav-Bar starts here -->
+    <nav
+            th:fragment="nav"
+            class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"
+    >
+
+        <!-- Toast Begins -->
+        <div
+                class="toast position-absolute col-lg-4 col-sm-12 border hide"
+                role="alert"
+                id="toast-alert"
+                aria-live="assertive"
+                aria-atomic="true"
+                data-animation="true"
+        >
+            <div class="toast-header">
+                <strong class="mr-auto">Sporty Shoes &nbsp;&nbsp;|&nbsp;&nbsp; Prakash Naidu</strong>
+                <small class="text-muted">just now</small>
+                <button
+                        type="button"
+                        class="ml-2 mb-1 close"
+                        data-dismiss="toast"
+                        aria-label="Close"
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body" id="toast-body">Login Success</div>
+        </div>
+        <!-- Toast End -->
+
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3 d-block text-center" th:href="@{/home}"
+        >Sporty Shoes</a
+        >
+        <ul class="navbar-nav list-group-horizontal">
+            <li class="nav-item">
+                <a class="nav-link m-2" th:href="@{/product/all/men}"
+                   th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/men')} ? 'active' : 'null'"
+                >Men</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link m-2" th:href="@{/product/all/women}"
+                   th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/women')} ? 'active' : 'null'"
+                >Women</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link m-2" th:href="@{/product/all/kids}"
+                   th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/kids')} ? 'active' : 'null'"
+                >Kids</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link m-2" th:href="@{/product/all/brand}"
+                   th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/brand')} ? 'active' : 'null'"
+                >Brand</a>
+            </li>
+            <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                <a class="nav-link m-2" th:href="@{/user/all}"
+                   th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/user/all')} ? 'active' : 'null'"
+                >Users</a>
+            </li>
+        </ul>
+        <input
+                class="form-control form-control-dark col-4"
+                type="text"
+                placeholder="Search"
+                aria-label="Search"
+        />
+        <!--        https://frontbackend.com/thymeleaf/thymeleaf-utility-methods-for-strings-->
+        <!--            th:classappend="${session?.user?.email} ? 'd-none' : 'd-block'"-->
+        <!--            th:if="${#authentication.getPrincipal().getUsername() eq null}"-->
+        <!--            th:unless="${#authentication?.getPrincipal()?.getUsername()}"-->
+        <!--            sec:authorize="isAnonymous()">-->
+        <!--            #strings.contains(#authentication.principal.authorities,'ROLE_ADMIN')-->
+        <!--            th:if="${#authorization.expression('isAuthenticated()')}"-->
+        <!--        ${#strings.equalsIgnoreCase(#httpServletRequest.requestURI, 'localhost:5555')}-->
+        <!--        th:classappend="${session?.user?.email} ? 'd-none' : 'd-block'"-->
+
+        <ul class="navbar-nav list-group-horizontal px-5 mx-4">
+            <th:block th:unless="${#authentication?.getPrincipal()?.getUsername()}">
+                <li id="sign-in" class="nav-item">
+                    <a class="nav-link m-2" th:href="@{/login}">Sign In</a>
+                </li>
+                <li id="sign-up" class="nav-item">
+                    <a class="nav-link m-2 px-3 border rounded" th:href="@{/user/sign-up}">Sign Up</a>
+                </li>
+            </th:block>
+            <li class="nav-item" sec:authorize="isAuthenticated()">
+                <div class="dropdown">
+                    <button
+                            class="btn btn-secondary dropdown-toggle"
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            sec:authentication="name"
+                    >
+                        User
+                    </button>
+                    <div
+                            class="dropdown-menu bg-dark px-2"
+                            aria-labelledby="dropdownMenuButton"
+                    >
+                        <a class="dropdown-item text-white w-100 col-auto rounded border text-center" th:href="@{/logout}"
+                        >Sign-Out</a
+                        >
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <!--    Nav-Bar ends here-->
+</div>
+<!--Wrapper ends here-->
+
+<th:block th:fragment="script">
+    <!--jQuery JS dependency-->
+    <script th:href="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <!--Bootstrap JS dependency-->
+    <script
+            th:href="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"
+    ></script>
+</th:block>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Sign Up | Sporty Shoes</title>
+
+    <!-- Bootstrap core CSS -->
+    <link
+            th:rel="stylesheet"
+            th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css} "
+    />
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/assets/bootstrap/css/cover.css}" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      body {
+        box-shadow: none;
+      }
+      footer {
+        background-color: transparent !important;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+
+    </style>
+</head>
+<body class="text-center">
+<!-- Wrapper Starts here -->
+<div class="col-8 d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <!--Nav-Bar Starts-->
+    <th:block th:replace="fragments/login-header :: header"></th:block>
+    <!--Nav-Bar Ends-->
+
+    <main role="main">
+        <div class="form my-2 col-12 mx-auto">
+            <h1 class="cover-heading mb-3">Registration page</h1>
+            <form
+                    th:action="@{/user/sign-up}"
+                    th:object="${userEntity}"
+                    method="POST"
+                    class="needs-validation"
+                    novalidate
+            >
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="full-name">Full Name</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="full-name"
+                                th:field="*{name}"
+                                placeholder="Prakash Naidu"
+                                required
+                                autofocus
+                                minlength="4"
+                        />
+                        <div
+                                th:if="${#fields.hasErrors('name')}"
+                                th:errors="*{name}"
+                                class="is-invalid"
+                        >
+                            Please provide your Name.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="email-id">Email ID</label>
+                        <input
+                                type="email"
+                                class="form-control"
+                                id="email-id"
+                                th:field="*{email}"
+                                placeholder="prakashnaidupn7@gmail.com"
+                                required
+                                autofocus
+                                minlength="6"
+                        />
+                        <div
+                                th:if="${#fields.hasErrors('email')}"
+                                th:errors="*{email}"
+                                class="is-invalid"
+                        >
+                            Please provide valid Email ID.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="gender">Gender</label>
+                        <select
+                                class="custom-select"
+                                id="gender"
+                                th:field="*{gender}"
+                                autofocus
+                                required
+                        >
+                            <option selected value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                        <div
+                                th:if="${#fields.hasErrors('gender')}"
+                                th:errors="*{gender}"
+                                class="is-invalid"
+                        >
+                            Please select your Gender.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="password">Password</label>
+                        <input
+                                type="password"
+                                class="form-control"
+                                id="password"
+                                th:field="*{password}"
+                                placeholder="Your Password"
+                                required
+                                autofocus
+                                minlength="4"
+                        />
+                        <div
+                                th:if="${#fields.hasErrors('password')}"
+                                th:errors="*{password}"
+                                class="is-invalid"
+                        >
+                            Please create a strong password.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <label for="address">Address</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="address"
+                                th:field="*{address}"
+                                placeholder="#door-no, street, landmark"
+                                required
+                                autofocus
+                                minlength="4"
+                        />
+                        <div
+                                th:if="${#fields.hasErrors('address')}"
+                                th:errors="*{address}"
+                                class="is-invalid"
+                        >
+                            Please enter valid address.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="city">City</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="city"
+                                th:field="*{city}"
+                                autofocus
+                                placeholder="Bengaluru"
+                                minlength="4"
+                                required
+                        />
+                        <div
+                                th:if="${#fields.hasErrors('city')}"
+                                th:errors="*{city}"
+                                class="is-invalid"
+                        >
+                            Please provide a valid city.
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="state">State</label>
+                        <select
+                                class="custom-select"
+                                id="state"
+                                th:field="*{state}"
+                                autofocus
+                                required
+                        >
+                            <option selected value="Karnataka">Karnataka</option>
+                            <option value="AP">AP</option>
+                        </select>
+                        <div
+                                th:if="${#fields.hasErrors('state')}"
+                                th:errors="*{state}"
+                                class="is-invalid"
+                        >
+                            Please select a valid state.
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="zip-code">Zip</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="zip-code"
+                                th:field="*{zipcode}"
+                                placeholder="560006"
+                                autofocus
+                                required
+                        />
+                        <div
+                                th:if="${#fields.hasErrors('zipcode')}"
+                                th:errors="*{zipcode}"
+                                class="is-invalid"
+                        >
+                            Please provide a valid zip.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value="true"
+                                id="invalidCheck"
+                                th:field="*{terms}"
+                                required
+                        />
+                        <label class="form-check-label" for="invalidCheck">
+                            Agree to terms and conditions
+                        </label>
+                        <div
+                                th:if="${#fields.hasErrors('terms')}"
+                                th:errors="*{terms}"
+                                class="is-invalid"
+                        >
+                            You must agree before submitting.
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-block" type="submit">Register Me</button>
+            </form>
+        </div>
+    </main>
+
+    <!--Footer Starts-->
+    <th:block th:replace="fragments/footer :: footer"></th:block>
+    <!--Footer Ends-->
+</div>
+<!-- Wrapper Ends here -->
+
+<!--jQuery JS dependency-->
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+
+<!--Custom JS-->
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title th:text="${title}">${title} | Sports Shoes</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}"/>
+
+    <!-- Datatable core CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/datatables/1.10.23/css/jquery.dataTables.css}"/>
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/assets/bootstrap/css/dashboard.css}" rel="stylesheet"/>
+
+    <!--Custom Style-->
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<!--Nav-Bar Starts-->
+<th:block th:replace="fragments/header :: nav"></th:block>
+<!--Nav-Bar Ends-->
+
+<div class="container-fluid">
+    <div class="row">
+        <!--Side Nav Starts-->
+        <th:block th:replace="fragments/side-nav :: aside"></th:block>
+        <!--Side Nav Ends-->
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 mb-auto">
+            <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+            >
+                <h1 class="h2" th:text="${heading}">Shoes</h1>
+            </div>
+
+            <!--            Main Content starts-->
+
+            <div class="row mx-auto justify-content-center">
+                <h6 class="lead text-center m-4 display-4" th:if="${#lists.isEmpty(products)}"
+                    th:text="${'Oops! ' + heading + ' are out of stock.'}"></h6>
+                <div class="card m-2" style="width: 15rem" th:unless="${#lists.isEmpty(products)}"
+                     th:each="product : ${products}">
+                    <img
+                            th:src="@{'data:image/png;base64,' + ${product.bytesToImageConverter(product.image)}}"
+                            class="card-img-top"
+                            th:alt="${product.name}"
+                            style="min-height: 180px; height: 180px;"
+                    />
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${product.name}">Shoe Name</h5>
+                        <p class="card-text text-center m-0">
+                        <div class="text-muted">Color: &nbsp;<strong th:text="${product.color}">White</strong></div>
+                        <div class="text-muted">Brand: &nbsp;<strong th:text="${product.brand}">Puma</strong></div>
+                        <div class="text-muted">Price: &nbsp;<strong th:text="${product.price}">₹500</strong></div>
+                        </p>
+                        <a sec:authorize="isAuthenticated()"
+                           th:href="@{/product/view/{suitableFor}/{type}/{id}(suitableFor = ${product.suitableFor}, type = ${product.type}, id = ${product.id})}"
+                           class="btn btn-primary btn-block">view</a>
+                    </div>
+                </div>
+            </div>
+            <!--            Main Content ends-->
+        </main>
+    </div>
+</div>
+
+<!--Footer Starts-->
+<th:block th:replace="fragments/footer :: footer"></th:block>
+<!--Footer Ends-->
+
+<!--jQuery JS dependency-->
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+
+<!--Bootstrap JS dependency-->
+<script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+
+<!--Datatables JS dependency-->
+<script th:src="@{/webjars/datatables/1.10.23/js/jquery.dataTables.js}"></script>
+
+<!--Custom JS-->
+<script th:src="@{/js/script.js}"></script>
+
+<script>
+      $(document).ready(function () {
+        $("#example").DataTable();
+      });
+
+</script>
+</body>
+</html>

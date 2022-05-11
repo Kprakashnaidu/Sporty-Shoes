@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Buy Shoe | Sports Shoes</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}"/>
+
+    <!-- Datatable core CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/datatables/1.10.23/css/jquery.dataTables.css}"/>
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/assets/bootstrap/css/dashboard.css}" rel="stylesheet"/>
+
+    <!--Custom Style-->
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<!--Nav-Bar Starts-->
+<th:block th:replace="fragments/header :: nav"></th:block>
+<!--Nav-Bar Ends-->
+
+<div class="container-fluid">
+    <div class="row">
+        <!--Side Nav Starts-->
+        <th:block th:replace="fragments/side-nav :: aside"></th:block>
+        <!--Side Nav Ends-->
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 mb-auto">
+            <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+            >
+                <h1 class="h2">Buy Product</h1>
+            </div>
+
+            <!--            Main Content Begins-->
+            <div class="container">
+                <div class="row mx-auto justify-content-around my-4">
+                    <div class="card col-6">
+                        <img
+                                th:src="@{'data:image/png;base64,' + ${product.bytesToImageConverter(product.image)}}"
+                                class="card-img-top"
+                                th:alt="${product.name}"
+                                style="min-height: 380px; height: 380px"
+                        />
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${product.name}">Card title</h5>
+                            <a th:href="@{/product/buy/{id}(id = ${product.id})}"
+                               class="btn btn-success btn-block text-uppercase"
+                               th:classappend="${product.stock == null || product.stock < 1} ? disabled : ''"
+                            >Buy This
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-5">
+                        <h1 class="display-4 text-capitalize" th:text="${product.name}">product name</h1>
+                        <h4 class="text-capitalize" th:text="${product.type + ' Shoes for ' + product.suitableFor}">
+                            Running shoes for men</h4>
+                        <p class="lead text-capitalize my-3" th:text="${product.color + ' Color'}">Red Color</p>
+                        <h3 class="display-4">&#x20B9;
+                            <div th:text="${product.price}" class="d-inline">500/-</div>
+                        </h3>
+                        <div class="lead">
+                            <button type="button" class="btn btn-success text-white">
+                                4.0
+                                <span class="badge bg-success mx-2 p-1 text-white"
+                                >&#9733;</span
+                                >
+                            </button>
+                            Rating
+                        </div>
+                        <blockquote class="blockquote my-3">
+                            <p class="mb-0 text-success" th:if="${product.stock > 0}"
+                               th:text="${'Only ' + product.stock + ' pieces are available'}"> 5 </p>
+                            <p class="mb-0 text-danger" th:if="${product.stock == null || product.stock < 1}"> Out of
+                                Stock </p>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <div class="blockquote my-4" th:text="${product.description}">This is Description</div>
+            </div>
+            <!--            Main Content Ends-->
+        </main>
+    </div>
+</div>
+
+<!--Footer Starts-->
+<th:block th:replace="fragments/footer :: footer"></th:block>
+<!--Footer Ends-->
+
+<!--jQuery JS dependency-->
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+
+<!--Bootstrap JS dependency-->
+<script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+
+<!--Datatables JS dependency-->
+<script th:src="@{/webjars/datatables/1.10.23/js/jquery.dataTables.js}"></script>
+
+<!--Custom JS-->
+<script th:src="@{/js/script.js}"></script>
+
+<script>
+      $(document).ready(function () {
+        $("#example").DataTable();
+      });
+
+</script>
+</body>
+</html>

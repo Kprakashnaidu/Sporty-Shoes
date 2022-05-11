@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <!--<title layout:title-pattern="$LAYOUT_TITLE | $CONTENT_TITLE">
+        Side Nav
+    </title>-->
+</head>
+<body>
+<!--Wrapper Starts here-->
+<div id="wrapper">
+    <!--Content Starts here-->
+    <div class="container-fluid">
+        <div class="row">
+            <aside
+                    th:fragment="aside"
+                    id="sidebarMenu"
+                    class="col-md-3 col-lg-2 d-md-block bg-light py-0 sidebar collapse show"
+            >
+                <div class="sidebar-sticky py-0 mx-3">
+
+                    <!-- Admin Options -->
+                    <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                        <h6
+                                id="admin"
+                                class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                        >
+                            <span>Admin View</span>
+                            <a
+                                    id="admin-plus"
+                                    class="d-flex align-items-center text-muted"
+                                    href="#"
+                                    aria-label="Add a new report"
+                            >
+                                <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="feather feather-plus-circle"
+                                >
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="8" x2="12" y2="16"></line>
+                                    <line x1="8" y1="12" x2="16" y2="12"></line>
+                                </svg>
+                            </a>
+                        </h6>
+                        <ul id="admin-list" class="nav flex-column mx-4">
+                            <li class="nav-item">
+                                <a id="all-users" class="nav-link" th:href="@{/user/all}">All Users </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="add-stock" class="nav-link" th:href="@{/product/add}">Add Stock </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="view-orders" class="nav-link" th:href="@{/order/all}">View Orders </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="view-stock" class="nav-link" th:href="@{/product/all}">View Stock </a>
+                            </li>
+                        </ul>
+                    </th:block>
+                    <!-- User Section-->
+                    <h6
+                            id="men"
+
+                            th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/men')} ? 's-active' : ''"
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-1 text-muted"
+                    >
+                        <span>Men Shoes</span>
+                        <a
+                                id="men-plus"
+                                th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/men')} ? 's-active' : ''"
+                                class="d-flex align-items-center text-muted"
+                                href="#"
+                                aria-label="Add a new report"
+                        >
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="feather feather-plus-circle"
+                            >
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="16"></line>
+                                <line x1="8" y1="12" x2="16" y2="12"></line>
+                            </svg>
+                        </a>
+                    </h6>
+                    <ul id="men-list" class="nav flex-column mx-4">
+                        <li class="nav-item">
+                            <a id="men-all" class="nav-link" th:href="@{/product/all/men}"
+                            th:classappend="${#strings.endsWith(#httpServletRequest.requestURI, '/all/men')} ? 's-active' : ''"
+                            >All </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="men-running" class="nav-link" th:href="@{/product/all/men/running}"
+                            th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/men/running')} ? 's-active' : ''"
+                            >Running </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="men-hiking" class="nav-link" th:href="@{/product/all/men/hiking}"
+                            th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/men/hiking')} ? 's-active' : ''"
+                            >Hiking </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="men-workout" class="nav-link" th:href="@{/product/all/men/workout}"
+                            th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/men/workout')} ? 's-active' : ''"
+                            >Workout </a>
+                        </li>
+                    </ul>
+                    <h6
+                            id="women"
+                            th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/women')} ? 's-active' : ''"
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-1 text-muted"
+                    >
+                        <span>Women Shoes</span>
+                        <a
+                                th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/women')} ? 's-active' : ''"
+                                class="d-flex align-items-center text-muted"
+                                href="#"
+                                aria-label="Add a new report"
+                        >
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="feather feather-plus-circle"
+                            >
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="16"></line>
+                                <line x1="8" y1="12" x2="16" y2="12"></line>
+                            </svg>
+                        </a>
+                    </h6>
+                    <ul id="women-list" class="nav flex-column mx-4">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/product/all/women}"
+                            th:classappend="${#strings.endsWith(#httpServletRequest.requestURI, '/all/women')} ? 's-active' : ''"
+                            >All </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/product/all/women/running}"
+                            th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/women/running')} ? 's-active' : ''"
+                            >Running </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/product/all/women/hiking}"
+                            th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/women/hiking')} ? 's-active' : ''"
+                            >Hiking </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/product/all/women/workout}"
+                            th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/women/workout')} ? 's-active' : ''"
+                            >Workout </a>
+                        </li>
+                    </ul>
+                    <h6
+                            th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/all/kids')} ? 's-active' : ''"
+                            id="kids"
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-1 text-muted"
+                    >
+                        <span>Kids Shoes</span>
+                        <a
+                                th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/all/kids')} ? 's-active' : ''"
+                                class="d-flex align-items-center text-muted"
+                                href="#"
+                                aria-label="Add a new report"
+                        >
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="feather feather-plus-circle"
+                            >
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="16"></line>
+                                <line x1="8" y1="12" x2="16" y2="12"></line>
+                            </svg>
+                        </a>
+                    </h6>
+                    <ul id="kids-list" class="nav flex-column mx-4">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/product/all/kids}"
+                               th:classappend="${#strings.endsWith(#httpServletRequest.requestURI, '/all/kids')} ? 's-active' : ''"
+                            >All </a>
+                        </li>
+                    </ul>
+                    <h6
+                            th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/all/brand')} ? 's-active' : ''"
+                            id="brand"
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-1 text-muted"
+                    >
+                        <span>Brand</span>
+                        <a
+                                th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/all/brand')} ? 's-active' : ''"
+                                class="d-flex align-items-center text-muted"
+                                href="#"
+                                aria-label="Add a new report"
+                        >
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="feather feather-plus-circle"
+                            >
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="16"></line>
+                                <line x1="8" y1="12" x2="16" y2="12"></line>
+                            </svg>
+                        </a>
+                    </h6>
+                    <ul id="brand-list" class="nav flex-column mx-4">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/product/all/brand}"
+                            th:classappend="${#strings.endsWith(#httpServletRequest.requestURI, '/all/brand')} ? 's-active' : ''"
+                            >All </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/product/all/brand/adidas}"
+                            th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/all/brand/adidas')} ? 's-active' : ''"
+                            >Adidas </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/product/all/brand/nike}"
+                            th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/all/brand/nike')} ? 's-active' : ''"
+                            >Nike </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/product/all/brand/puma}"
+                            th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/all/brand/puma')} ? 's-active' : ''"
+                            >Puma </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/product/all/brand/reebok}"
+                            th:classappend="${#strings.containsIgnoreCase(#httpServletRequest.requestURI, '/all/brand/reebok')} ? 's-active' : ''"
+                            >Reebok </a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+            Main content goes here
+        </main>
+    </div>
+    <!--    Content ends here-->
+</div>
+<!--Wrapper ends here-->
+</body>
+</html>

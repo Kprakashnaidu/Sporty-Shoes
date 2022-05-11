@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>View Stock | Sports Shoes</title>
+
+    <!-- Bootstrap core CSS -->
+    <link
+            th:rel="stylesheet"
+            th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css} "
+    />
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/assets/bootstrap/css/dashboard.css}" rel="stylesheet"/>
+
+    <!-- Datatable core CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/datatables/1.10.23/css/jquery.dataTables.css}"/>
+
+    <!--    File Upload style-->
+    <link rel="stylesheet" th:href="@{/css/file-upload.css}"/>
+
+    <!--Custom Style-->
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<!--Nav-Bar Starts-->
+<th:block th:replace="fragments/header :: nav"></th:block>
+<!--Nav-Bar Ends-->
+
+<div class="container-fluid">
+    <div class="row">
+        <!--Side Nav Starts-->
+        <th:block th:replace="fragments/side-nav :: aside"></th:block>
+        <!--Side Nav Ends-->
+
+        <!--        Main Content starts-->
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 mb-auto">
+            <!--            Content heading starts-->
+            <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+            >
+                <h1 class="h2">View Stock</h1>
+            </div>
+            <!--            Content heading ends-->
+
+            <!-- Content Starts -->
+            <div id="data-table" class="w-100">
+                <table id="example" class="display w-100">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Style Name</th>
+                        <th>Brand</th>
+                        <th>Price</th>
+                        <th>Type</th>
+                        <th>For</th>
+                        <th>View</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="product : ${products}">
+                        <td th:text="${product.name}"></td>
+                        <td>
+                            <img
+                                    style="width: 160px; height: 120px;"
+                                    th:src="@{'data:image/jpeg;base64,' + ${product.bytesToImageConverter(product.image)}}"
+                                    th:alt="${product.name}"
+                                    class="card-img-top img-fluid border border-success"
+                            />
+                        </td>
+                        <td th:text="${product.styleName}"></td>
+                        <td th:text="${product.brand}"></td>
+                        <td th:text="${product.price}"></td>
+                        <td th:text="${product.type}"></td>
+                        <td th:text="${product.suitableFor}"></td>
+                        <td>
+                            <a th:href="@{view/{id}(id=${product.id})}">view</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Style Name</th>
+                        <th>Brand</th>
+                        <th>Price</th>
+                        <th>Type</th>
+                        <th>For</th>
+                        <th>View</th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- Content Ends -->
+        </main>
+        <!--        Main Content ends-->
+
+    </div>
+</div>
+
+<!--Footer Starts-->
+<th:block th:replace="fragments/footer :: footer"></th:block>
+<!--Footer Ends-->
+
+<!--jQuery JS dependency-->
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+
+<!--Bootstrap JS dependency-->
+<script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+
+<!--Datatables JS dependency-->
+<script th:src="@{/webjars/datatables/1.10.23/js/jquery.dataTables.js}"></script>
+
+<!--File Upload JS dependency-->
+<script th:src="@{/js/file-upload.js}"></script>
+
+<!--Custom JS-->
+<script th:src="@{/js/script.js}"></script>
+<script>
+      $(document).ready(function () {
+        $("#example").DataTable();
+      });
+</script>
+</body>
+</html>

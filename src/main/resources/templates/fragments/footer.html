@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Footer</title>
+    <!--    <title layout:title-pattern="$LAYOUT_TITLE | $CONTENT_TITLE">Footer</title>-->
+</head>
+<body>
+<!--Wrapper Starts here-->
+<div id="wrapper">
+    <!--    Footer Starts here-->
+    <footer
+            th:fragment="footer"
+            class="mastfoot text-center mx-auto my-2 py-4 text-white"
+    >
+        <div class="inner">
+            <h6 class="">
+                Designed & Developed by:
+                <strong class="text-muted">
+                    <a href="https://prakashnaidu.github.io/Portfolio/" target="_blank" class="text-white">Prakash Naidu</a>
+                </strong>
+            </h6>
+        </div>
+    </footer>
+    <!--    Footer ends here-->
+</div>
+</body>
+</html>
