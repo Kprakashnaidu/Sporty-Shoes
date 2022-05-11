@@ -13,13 +13,13 @@ changing password of the user.
 5. HTML
 6. CSS
 7. PostgreSQL
-8.Javascript
-9.jQuery
+8. Javascript
+9. jQuery
 10.DataTables
 11.Bootstrap CSS and JS
 12.XML
-13. Git and Github
-14. Agile Scrum Methodology
+13.Git and Github
+14.Agile Scrum Methodology
 
 # Concepts and Algorithms used
 
