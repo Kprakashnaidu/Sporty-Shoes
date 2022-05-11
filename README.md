@@ -7,23 +7,19 @@ changing password of the user.
 # Frameworks and Technologies used
 
 1. Maven
-2. Java 1.8
-3. Spring Boot 2.4.2
-4. Thymeleaf
-5. Spring Security
-6. Spring Data JPA
+2. Java
+3. Spring Boot 
+4. Spring Data JPA
+5. HTML
+6. CSS
 7. PostgreSQL
-8. Lombok
-9. HTML
-10. CSS
-11. Javascript
-12. jQuery
-13. DataTables
-14. Bootstrap CSS and JS
-15. XML
-16. properties and yaml
-17. Git and Github
-18. Agile Scrum Methodology
+8.Javascript
+9.jQuery
+10.DataTables
+11.Bootstrap CSS and JS
+12.XML
+13. Git and Github
+14. Agile Scrum Methodology
 
 # Concepts and Algorithms used
 
